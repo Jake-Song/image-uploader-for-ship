@@ -20,11 +20,14 @@ function register_metaboxes() {
 }
 add_action( 'add_meta_boxes', __NAMESPACE__ . '\register_metaboxes' );
 function register_admin_script() {
-	wp_enqueue_script( 'wp_img_upload', plugin_dir_url( __FILE__ ) . '/image-upload.js', array('jquery', 'media-upload'), '0.0.2', true );
-	wp_localize_script( 'wp_img_upload', 'customUploads',
-		array(
-			'imageData' => get_post_meta( get_the_ID(), 'custom_image_data', true ) )
-	 );
+	global $post;
+	if( $post !== null && $post->post_type === "ship" ){
+		wp_enqueue_script( 'wp_img_upload', plugin_dir_url( __FILE__ ) . '/image-upload.js', array('jquery', 'media-upload'), '0.0.2', true );
+		wp_localize_script( 'wp_img_upload', 'customUploads',
+			array(
+				'imageData' => get_post_meta( get_the_ID(), 'custom_image_data', true ) )
+		 );
+	}
 }
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\register_admin_script' );
 function image_uploader_callback( $post ) {
