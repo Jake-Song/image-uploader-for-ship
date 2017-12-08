@@ -66,7 +66,12 @@ $test = 0;
 		if ( isset( $image_data ) ) {
 				$image_meta = [];
 			for( $i = 0; $i < count($image_data); $i++){
-				$image_meta[$i] = array( 'id' => intval( $image_data[$i]->id ), 'url' => esc_url_raw( $image_data[$i]->url ) );
+				$image_meta[$i] = array(
+					'id' => intval( $image_data[$i]->id ),
+					'url' => esc_url_raw( $image_data[$i]->url ),
+					'alt' => $image_data[$i]->alt
+				);
+
 			}
 		} else {
 			$image_meta = [];

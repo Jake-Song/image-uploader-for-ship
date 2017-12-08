@@ -24,13 +24,14 @@ jQuery( document ).ready( function($){
       var img = [];
       var hiddenVal = [];
       for(var i = 0; i < attachmentImgs.length; i++){
-
+        var test = 0;
         img[i] = $('<img class="selected">');
         img[i].attr( 'src', attachmentImgs[i].url );
 
         hiddenVal[i] = {
           id: attachmentImgs[i].id,
-          url: attachmentImgs[i].url
+          url: attachmentImgs[i].url,
+          alt: attachmentImgs[i].alt
         };
 
         imgBox.prepend(img[i]);
